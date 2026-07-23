@@ -22,6 +22,7 @@ Tested on
 - Mac Mini (2018)
 - AmpliTube 5 MAX v2, 5.10.9
 
+why the fucking git keeps making conflict??????
 
 
 ---
