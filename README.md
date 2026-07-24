@@ -2,15 +2,14 @@
 ![uninstaller](https://raw.githubusercontent.com/thinker99k/AmpliTube5-Uninstaller/refs/heads/main/img/uninstaller.png)
 
 ## How to use
-
-1. Download *script.zsh*
-2. Open terminal
-3. Do
-   1. **Unauthorize AmpliTube 5 in IK Product Manager**
-   2. `xattr -d com.apple.quarantine SCRIPT_PATH` : disable quarantine flag on script
-   3. `chmod +x SCRIPT_PATH` : grant execute privilege to script
-   4. `sudo SCRIPT_PATH` : actual run of script
+1. **Unauthorize AmpliTube 5 in IK Product Manager**
+2. Download *script.zsh*
+3. Open terminal and do
+   1. `xattr -d com.apple.quarantine SCRIPT_PATH` : disable quarantine flag on script
+   2. `chmod +x SCRIPT_PATH` : grant execute privilege to script
+   3. `sudo SCRIPT_PATH` : actual run of script
    
+   ![howtouse](https://raw.githubusercontent.com/thinker99k/AmpliTube5-Uninstaller/refs/heads/main/img/howtouse.png)
       (To fill `FILE_LOCATION`, just drag *script.zsh* from finder to terminal)
 
 ## DISCLAIMER
