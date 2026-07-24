@@ -68,7 +68,6 @@ msg_close(){
   fi
 }
 
-
 # stat (color:string) (msg:string)
 stat(){
   local stat_color
