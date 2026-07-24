@@ -1,4 +1,5 @@
 # Amplitube5-Uninstaller
+![uninstaller](https://raw.githubusercontent.com/thinker99k/AmpliTube5-Uninstaller/refs/heads/main/img/uninstaller.png)
 
 ## How to use
 
