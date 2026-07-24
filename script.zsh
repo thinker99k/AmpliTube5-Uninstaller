@@ -283,6 +283,7 @@ do_list2() {
         tmp_path=""
       fi
     fi
+    # from now and after, tmp_path IS null
 
     # current line include "X-(DRIVE|SPACE|TIME|VIBE)"(case insensitive)
     if [[ "$line" =~ [Xx]-([Dd][Rr][Ii][Vv][Ee]|[Ss][Pp][Aa][Cc][Ee]|[Tt][Ii][Mm][Ee]|[Vv][Ii][Bb][Ee]) ]]; then
