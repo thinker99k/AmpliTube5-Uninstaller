@@ -11,7 +11,7 @@
    
    ![howtouse](https://raw.githubusercontent.com/thinker99k/AmpliTube5-Uninstaller/refs/heads/main/img/howtouse.png)
 
-   (To fill `FILE_LOCATION`, just drag *script.zsh* from finder to terminal)
+   (To fill `SCRIPT_PATH`, just drag *script.zsh* from finder to terminal)
 
 ## DISCLAIMER
 **USE AT YOUR OWN RISK**
