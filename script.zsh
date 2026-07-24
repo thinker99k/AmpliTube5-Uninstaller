@@ -347,9 +347,10 @@ do_remove() {
     stat GREEN "OK"
 
   else
-    stat YELLOW "WARN"
-    msg_open YELLOW "** Warning ** "
-    msg_close YELLOW "Failed to remove $err_cnt items. Please check manually."
+    stat RED "FAIL"
+    msg_open RED "** ERROR ** "
+    msg_close DEFAULT "Failed to remove $err_cnt items. Please check ${FILTERED} manually."
+    exit 1
   fi
 }
 
