@@ -24,4 +24,14 @@ Tested on
 - AmpliTube 5 MAX v2, 5.10.9
 
 ---
-Any PR will be appreciated!
+
+## How to Contribute
+These kind of PRs will NOT be accepted
+- **Break Readability** (ex. substituting duplicated snippet to separate function)\
+   Shell script is always readability first
+- **Require any network things** (ex. curl)\
+   This script need no other things than itself
+- **External Dependencies** (ex. python from Xcode, packages from brew, ports)\
+   Must run on stock macOS(BSD) utilies only
+
+Except that, any PR will be appreciated!
