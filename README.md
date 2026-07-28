@@ -3,7 +3,7 @@
 
 ## How to use
 1. **Unauthorize AmpliTube 5 in IK Product Manager**
-2. Download *script.zsh*
+2. Download latest release version of *script.zsh* from [Releases](https://github.com/thinker99k/AmpliTube5-Uninstaller/releases)
 3. Open terminal and do
    1. `xattr -d com.apple.quarantine SCRIPT_PATH` : disable quarantine flag on script
    2. `chmod +x SCRIPT_PATH` : grant execute privilege to script
@@ -19,7 +19,7 @@
 Author(s) of this repo do(es) not have charge on any malfunctions, so backup important files before run this script
 
 Tested on
-- MacOS Seqouia 15.7.7
+- macOS Seqouia 15.7.7
 - Mac Mini (2018)
 - AmpliTube 5 MAX v2, 5.10.9
 
