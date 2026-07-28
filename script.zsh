@@ -40,31 +40,31 @@ color() {
 
 # msg_open (color:string) (msg:string)
 msg_open(){
-  local msg_color1
-  msg_color1=$(color "$1")
+  local msg_open_color
+  msg_open_color=$(color "$1")
 
   # stderr
   if [[ "$1" == "RED" ]]; then
-    printf "${msg_color1}%s${DEFAULT}" "$2" >&2
+    printf "${msg_open_color}%s${DEFAULT}" "$2" >&2
 
   # stdout
   else
-    printf "${msg_color1}%s${DEFAULT}" "$2"
+    printf "${msg_open_color}%s${DEFAULT}" "$2"
   fi
 }
 
 # msg_close (color:string) (msg:string)
 msg_close(){
-  local msg_color2
-  msg_color2=$(color "$1")
+  local msg_close_color
+  msg_close_color=$(color "$1")
 
   # stderr
   if [[ "$1" == "RED" ]]; then
-    printf "${msg_color2}%s${DEFAULT}\n" "$2" >&2
+    printf "${msg_close_color}%s${DEFAULT}\n" "$2" >&2
 
   # stdout
   else
-    printf "${msg_color2}%s${DEFAULT}\n" "$2"
+    printf "${msg_close_color}%s${DEFAULT}\n" "$2"
   fi
 }
 
@@ -88,7 +88,7 @@ get_yn() {
   local cnt=0
 
   while true; do
-    if [[ $cnt -ge 3 ]]; then
+    if [[ ${cnt} -ge 3 ]]; then
     msg_close RED "YOU MORON"
       exit 1;
     fi
@@ -96,7 +96,7 @@ get_yn() {
     msg_open DEFAULT "$1"
 
     read -r answer
-    case "$answer" in
+    case "${answer}" in
       [yY] | [yY][eE][sS] )
         return 0
         ;;
@@ -255,8 +255,8 @@ do_list1() {
     # from now and after, tmp_path IS null
 
     # current line include "[Aa]mpli[Tt]ube\ ?5"
-    if [[ "$line" =~ [Aa]mpli[Tt]ube\ ?5 ]]; then
-      tmp_path="$line"
+    if [[ "${line}" =~ [Aa]mpli[Tt]ube\ ?5 ]]; then
+      tmp_path="${line}"
       echo "/${tmp_path}" >> "${FILTERED}"
 
     # very parent path, unrelated to AmpliTube 5
@@ -285,8 +285,8 @@ do_list2() {
     # from now and after, tmp_path IS null
 
     # current line include "X-(DRIVE|SPACE|TIME|VIBE)"(case insensitive)
-    if [[ "$line" =~ [Xx]-([Dd][Rr][Ii][Vv][Ee]|[Ss][Pp][Aa][Cc][Ee]|[Tt][Ii][Mm][Ee]|[Vv][Ii][Bb][Ee]) ]]; then
-      tmp_path="$line"
+    if [[ "${line}" =~ [Xx]-([Dd][Rr][Ii][Vv][Ee]|[Ss][Pp][Aa][Cc][Ee]|[Tt][Ii][Mm][Ee]|[Vv][Ii][Bb][Ee]) ]]; then
+      tmp_path="${line}"
       echo "/${tmp_path}" >> "${FILTERED}"
 
     # very parent path, unrelated to AmpliTube 5
@@ -334,21 +334,21 @@ do_remove() {
   local err_cnt=0
   while IFS= read -r line; do
     # ignore empty line
-    [[ -z "$line" ]] && continue
+    [[ -z "${line}" ]] && continue
 
     # delete
-    if ! rm -rf "$line" 2>/dev/null; then
+    if ! rm -rf "${line}" 2>/dev/null; then
       ((err_cnt++))
     fi
   done < "${FILTERED}"
 
-  if [[ $err_cnt -eq 0 ]]; then
+  if [[ ${err_cnt} -eq 0 ]]; then
     stat GREEN "OK"
 
   else
     stat RED "FAIL"
     msg_open RED "** ERROR ** "
-    msg_close DEFAULT "Failed to remove $err_cnt items. Please check ${FILTERED} manually."
+    msg_close DEFAULT "Failed to remove ${err_cnt} items. Please check ${FILTERED} manually."
     exit 1
   fi
 }
@@ -356,7 +356,7 @@ do_remove() {
 do_cleanup() {
   msg_open DEFAULT "[7/7] Final cleanup... "
 
-  pkgutil --forget "$PKG_NAME" > /dev/null 2>&1 || exit 1
+  pkgutil --forget "${PKG_NAME}" > /dev/null 2>&1 || exit 1
   rm -f "${PKGFILES}" "${FILTERED}" 2>/dev/null
 
   stat GREEN "OK"
