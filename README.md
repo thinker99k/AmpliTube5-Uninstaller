@@ -8,9 +8,9 @@
 2. Download latest release version of *script.zsh*
    from [Releases](https://github.com/thinker99k/AmpliTube5-Uninstaller/releases)
 3. Open terminal and do
-1. `xattr -d com.apple.quarantine SCRIPT_PATH` : disable quarantine flag on script
-2. `chmod +x SCRIPT_PATH` : grant execute privilege to script
-3. `sudo SCRIPT_PATH` : actual run of script
+   1. `xattr -d com.apple.quarantine SCRIPT_PATH` : disable quarantine flag on script
+   2. `chmod +x SCRIPT_PATH` : grant execute privilege to script
+   3. `sudo SCRIPT_PATH` : actual run of script
 
 ![howtouse](https://raw.githubusercontent.com/thinker99k/AmpliTube5-Uninstaller/refs/heads/main/img/howtouse.png)
 
@@ -69,8 +69,8 @@ This script set 3 targets, delete in order of these guarantee clean removal as J
   - /Library
   - /Applications (Duplicated with TARGET0)
 - **TARGET2** : libraries
-  - ~/Library
   - /Library (Duplicated with TARGET1)
+  - ~/Library
 - **TARGET3** : user files (preset, project, etc)
   - ~/Documents
 
