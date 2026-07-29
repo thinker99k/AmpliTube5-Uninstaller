@@ -91,7 +91,7 @@ Tested on
 
 ---
 
-## How to Contribute
+## How to contribute
 
 These kind of PRs will NOT be accepted
 
