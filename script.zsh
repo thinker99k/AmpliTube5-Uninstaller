@@ -17,8 +17,8 @@ while [[ "$#" -gt 0 ]]; do
     -h|--help)
       echo "Usage: $0 [options]"
       echo "Options:"
-      echo "  -d, --debug    Enable debug mode (Dry run, no actual deletion)"
-      echo "  -v, --verbose  Enable verbose output (Show detailed logs)"
+      echo "  -d, --debug    Enable debug mode"
+      echo "  -v, --verbose  Enable verbose output"
       echo "  -h, --help     Show this help message"
       exit 0
       ;;
