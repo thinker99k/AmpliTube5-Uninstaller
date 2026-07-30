@@ -57,7 +57,7 @@ IK provide official uninstaller of course, but it DEFINITELY SUCKS\
 IK Product Manager checks whether program is installed or not by just\
 `/Library/Application Support/IK Multimedia/<program_name>/` exists, wtf?
 
-This script set 3 targets, delete in order of these guarantee clean removal as Jazz Chorus
+This script set 3 targets, delete in order of these guarantee clean removal like Jazz Chorus
 
 <details>
 <summary>TARGET </summary>
