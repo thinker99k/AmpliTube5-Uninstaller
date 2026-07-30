@@ -46,7 +46,7 @@ readonly GREEN="\033[32m"
 readonly YELLOW="\033[33m"
 readonly RED="\033[31m"
 
-readonly STEPS=10
+readonly STEPS=11
 CURRSTEP=0
 
 # msg_color (color: string)
@@ -144,40 +144,6 @@ msg_stat(){
   printf "[ ${msg_stat_color}%s${DEFAULT} ]\n" "$2"
 }
 
-
-### targets ###
-# delete in this order guarantee clean remove
-
-# TARGET0 : /Applications
-# can be deleted by user or not
-# -> must delete on purpose
-readonly APP_PATH="/Applications/AmpliTube\ 5.app/"
-
-# TARGET1 : pkgutil exist, /Library, /Applications(duplicated)
-# about 50%?
-# -> delete if pkgutil have receipt
-readonly TARGET1="installer"
-readonly PKGFILES="pkgfiles.txt"
-readonly FILTERED1="filtered1.txt"
-FLAG[1]=0
-
-# TARGET2 : ~/Library, /Library(duplicated)
-# users will not touch this
-# -> will be deleted unconditionally(FLAG=1)
-readonly TARGET2="app cache"
-readonly PKGCACHES="pkgcaches.txt"
-readonly FILTERED2="filtered2.txt"
-FLAG[2]=0
-
-# TARGET3 : ~/Documents
-# can be deleted by user
-# -> must delete on purpose
-readonly TARGET3="user data"
-readonly DOCUMENTS="documents.txt"
-readonly FILTERED3="filtered3.txt"
-FLAG[3]=0
-
-
 ### chk ###
 chk_priv() {
   msg_step "Check root privilege... "
@@ -242,8 +208,54 @@ chk_proc() {
   chk_proc1 "${PROC_NAME2}"
 }
 
+chk_auth() {
+  msg_step "Check is AmpliTube 5 unauthorized... "
 
-### do ###
+  # IK Product Manager checks authorization status by domain(.plist)
+  # still authorized
+  if sudo -u "${SUDO_USER:-$USER}" defaults read "com.ikmultimedia.AmpliTube 5" >/dev/null 2>&1; then
+    msg_stat RED "FAIL"
+    msg_open RED "** ERROR ** "
+    msg_close RED "Unauthorize AmpliTube 5 from IK Product Manager."
+    exit 1
+
+  else
+    msg_stat GREEN "OK"
+  fi
+}
+
+## targets ##
+# delete in this order guarantee clean remove
+
+# TARGET0 : /Applications
+# can be deleted by user or not
+# -> must delete on purpose
+readonly APP_PATH="/Applications/AmpliTube\ 5.app/"
+
+# TARGET1 : pkgutil exist, /Library, /Applications(duplicated)
+# about 50%?
+# -> delete if pkgutil have receipt
+readonly TARGET1="installer"
+readonly PKGFILES="pkgfiles.txt"
+readonly FILTERED1="filtered1.txt"
+FLAG[1]=0
+
+# TARGET2 : ~/Library, /Library(duplicated)
+# users will not touch this
+# -> will be deleted unconditionally(FLAG=1)
+readonly TARGET2="app cache"
+readonly PKGCACHES="pkgcaches.txt"
+readonly FILTERED2="filtered2.txt"
+FLAG[2]=0
+
+# TARGET3 : ~/Documents
+# can be deleted by user
+# -> must delete on purpose
+readonly TARGET3="user data"
+readonly DOCUMENTS="documents.txt"
+readonly FILTERED3="filtered3.txt"
+FLAG[3]=0
+
 # "AmpliTube 5" (space none or once, case insensitive)
 readonly REGEX1="[Aa]mpli[Tt]ube\ ?5"
 
@@ -365,6 +377,7 @@ chk_file() {
 }
 
 
+### do ###
 # removeFiles (death_note: string)
 removeFiles() {
   local err_cnt=0
@@ -477,6 +490,7 @@ main() {
   fi
 
   chk_priv
+  chk_auth
   chk_proc
   chk_file
 
